@@ -24,6 +24,4 @@ env/
 Thumbs.db
 
 # Output is tracked (for gh-pages deployment)
-# but keep empty initially
-output/*.html
 !output/.gitkeep
