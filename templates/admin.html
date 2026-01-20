@@ -16,6 +16,24 @@
     <div class="builder-layout">
         <aside class="sidebar">
             <div class="sidebar-section">
+                <h3>Layout Style</h3>
+                <div class="layout-options">
+                    <button class="layout-btn {% if data.layout == 'classic' %}active{% endif %}" data-layout="classic" title="Classic - Clean centered layout">
+                        <svg viewBox="0 0 40 30" width="40" height="30"><rect x="10" y="2" width="20" height="4" fill="currentColor"/><rect x="8" y="8" width="24" height="8" fill="currentColor" opacity="0.5"/><rect x="12" y="18" width="16" height="3" fill="currentColor" opacity="0.3"/><rect x="12" y="23" width="16" height="3" fill="currentColor" opacity="0.3"/></svg>
+                        <span>Classic</span>
+                    </button>
+                    <button class="layout-btn {% if data.layout == 'bento' %}active{% endif %}" data-layout="bento" title="Bento - Asymmetric grid layout">
+                        <svg viewBox="0 0 40 30" width="40" height="30"><rect x="2" y="2" width="16" height="12" fill="currentColor"/><rect x="20" y="2" width="18" height="6" fill="currentColor" opacity="0.5"/><rect x="20" y="10" width="8" height="8" fill="currentColor" opacity="0.3"/><rect x="30" y="10" width="8" height="8" fill="currentColor" opacity="0.5"/><rect x="2" y="16" width="10" height="12" fill="currentColor" opacity="0.3"/><rect x="14" y="16" width="24" height="12" fill="currentColor" opacity="0.5"/></svg>
+                        <span>Bento</span>
+                    </button>
+                    <button class="layout-btn {% if data.layout == 'bold' %}active{% endif %}" data-layout="bold" title="Bold - Editorial style with big type">
+                        <svg viewBox="0 0 40 30" width="40" height="30"><rect x="2" y="2" width="36" height="10" fill="currentColor"/><rect x="2" y="14" width="18" height="14" fill="currentColor" opacity="0.3" transform="skewY(-2)"/><rect x="22" y="14" width="16" height="6" fill="currentColor" opacity="0.5"/><rect x="22" y="22" width="16" height="6" fill="currentColor" opacity="0.5"/></svg>
+                        <span>Bold</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
                 <h3>Color Scheme</h3>
                 <div class="color-schemes">
                     {% for key, scheme in schemes.items() %}
@@ -70,6 +88,18 @@
                     </div>
                     <div class="photo-preview">
                         <img id="photoPreview" src="{{ data.photo.url }}" alt="Photo preview" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+                    </div>
+                </section>
+
+                <section class="editor-section" id="edit-banner">
+                    <h2>Banner Image <span class="optional-tag">Optional</span></h2>
+                    <div class="form-group">
+                        <label for="bannerUrl">Banner URL</label>
+                        <input type="url" id="bannerUrl" name="banner.url" value="{{ data.banner.url if data.banner else '' }}" placeholder="https://example.com/your-banner.jpg">
+                        <p class="help-text">A wide image (recommended: 1200x400px) shown at the top of your portfolio. Works great with Bento and Bold layouts.</p>
+                    </div>
+                    <div class="banner-preview">
+                        <img id="bannerPreview" src="{{ data.banner.url if data.banner and data.banner.url else 'https://via.placeholder.com/600x200?text=No+Banner' }}" alt="Banner preview" onerror="this.src='https://via.placeholder.com/600x200?text=Invalid+URL'">
                     </div>
                 </section>
 

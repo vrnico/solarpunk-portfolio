@@ -26,6 +26,109 @@
             min-height: 100vh;
         }
 
+        /* ========================================
+           SHARED STYLES
+           ======================================== */
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .skills-list li {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            color: var(--secondary);
+            border-radius: 50%;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+            text-decoration: none;
+        }
+
+        .social-links svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--primary);
+            flex-shrink: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* ========================================
+           CLASSIC LAYOUT
+           Clean, centered, professional
+           ======================================== */
+
+        {% if data.layout == 'classic' or not data.layout %}
+        .banner-image {
+            height: 200px;
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -63,7 +166,7 @@
         .section h2 {
             color: var(--primary);
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -73,52 +176,18 @@
             content: '';
             display: inline-block;
             width: 4px;
-            height: 1.2em;
+            height: 1.1em;
             background: var(--accent);
             border-radius: 2px;
         }
 
-        /* Photo Section */
         .photo-section {
             text-align: center;
         }
 
-        .photo-section img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        /* Bio Section */
-        .bio-section p {
-            font-size: 1.1rem;
-            max-width: 600px;
-        }
-
-        /* Skills Section */
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            list-style: none;
-        }
-
-        .skills-list li {
-            background: var(--primary);
-            color: var(--secondary);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* Projects Section */
         .project {
             background: rgba(0,0,0,0.03);
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: 8px;
             margin-bottom: 1rem;
             border-left: 4px solid var(--accent);
@@ -126,119 +195,466 @@
 
         .project h3 {
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.1rem;
         }
 
         .project p {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
         }
 
-        .project a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .project a:hover {
-            text-decoration: underline;
-        }
-
-        /* Contact Section */
-        .contact-info {
-            display: grid;
-            gap: 0.75rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .contact-item svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--primary);
-        }
-
-        .contact-item a {
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .contact-item a:hover {
-            color: var(--primary);
-        }
-
-        /* Social Section */
         .social-links {
-            display: flex;
-            gap: 1.5rem;
             justify-content: center;
             padding: 1rem 0;
         }
+        {% endif %}
 
-        .social-links a {
+        /* ========================================
+           BENTO LAYOUT
+           Asymmetric grid, modern, playful
+           ======================================== */
+
+        {% if data.layout == 'bento' %}
+        body {
+            background: var(--secondary);
+            padding: 1.5rem;
+        }
+
+        .banner-wrapper {
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .banner-image {
+            height: 250px;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bento-card {
+            background: var(--primary);
+            color: var(--secondary);
+            border-radius: 20px;
+            padding: 1.5rem;
+            overflow: hidden;
+        }
+
+        .bento-card.secondary {
+            background: var(--text);
+            color: var(--secondary);
+        }
+
+        .bento-card.outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--text);
+        }
+
+        .bento-card.accent {
+            background: var(--accent);
+            color: var(--text);
+        }
+
+        .bento-card h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.7;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Hero card - name & title */
+        .bento-hero {
+            grid-column: span 8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .bento-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .bento-hero .title {
+            font-size: 1.25rem;
+            opacity: 0.8;
+        }
+
+        /* Photo card */
+        .bento-photo {
+            grid-column: span 4;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: var(--secondary);
-            border-radius: 50%;
-            transition: transform 0.2s, opacity 0.2s;
-        }
-
-        .social-links a:hover {
-            transform: scale(1.1);
-            opacity: 0.9;
-        }
-
-        .social-links svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
             padding: 2rem;
-            font-size: 0.85rem;
+        }
+
+        .bento-photo .profile-photo {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            aspect-ratio: 1;
+            border-color: var(--secondary);
+        }
+
+        /* Bio card */
+        .bento-bio {
+            grid-column: span 6;
+        }
+
+        .bento-bio p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Skills card */
+        .bento-skills {
+            grid-column: span 6;
+        }
+
+        .bento-skills .skills-list li {
+            background: var(--secondary);
+            color: var(--text);
+        }
+
+        /* Projects - each gets own card */
+        .bento-project {
+            grid-column: span 4;
+        }
+
+        .bento-project h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bento-project p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-bottom: 0.75rem;
+        }
+
+        .bento-project a {
+            color: inherit;
+            font-weight: 600;
+        }
+
+        /* Contact card */
+        .bento-contact {
+            grid-column: span 5;
+        }
+
+        .bento-contact .contact-item svg {
+            fill: currentColor;
             opacity: 0.7;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .container {
-                padding: 1rem;
-            }
-
-            header h1 {
-                font-size: 2rem;
-            }
-
-            .section {
-                padding: 1.5rem 0;
-            }
+        .bento-contact a {
+            color: inherit;
         }
+
+        /* Social card */
+        .bento-social {
+            grid-column: span 7;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bento-social .social-links a {
+            background: var(--secondary);
+            color: var(--primary);
+            width: 56px;
+            height: 56px;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .bento-hero { grid-column: span 12; }
+            .bento-photo { grid-column: span 12; }
+            .bento-bio { grid-column: span 12; }
+            .bento-skills { grid-column: span 12; }
+            .bento-project { grid-column: span 6; }
+            .bento-contact { grid-column: span 12; }
+            .bento-social { grid-column: span 12; }
+        }
+
+        @media (max-width: 600px) {
+            .bento-project { grid-column: span 12; }
+            .bento-hero h1 { font-size: 2rem; }
+        }
+        {% endif %}
+
+        /* ========================================
+           BOLD LAYOUT
+           Editorial, dramatic, artistic
+           ======================================== */
+
+        {% if data.layout == 'bold' %}
+        body {
+            background: var(--secondary);
+        }
+
+        .bold-banner {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            overflow: hidden;
+        }
+
+        .bold-banner .banner-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bold-banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 30%, var(--secondary) 100%);
+        }
+
+        .bold-banner .hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 4rem;
+            z-index: 1;
+        }
+
+        .bold-banner h1 {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            line-height: 0.9;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+        }
+
+        .bold-banner .title {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-top: 1rem;
+            font-weight: 300;
+        }
+
+        /* No banner fallback */
+        .bold-header-no-banner {
+            padding: 6rem 4rem 4rem;
+            background: var(--primary);
+        }
+
+        .bold-header-no-banner h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            line-height: 0.9;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+        }
+
+        .bold-header-no-banner .title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-top: 1rem;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        .bold-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem;
+        }
+
+        .bold-section {
+            margin-bottom: 6rem;
+        }
+
+        .bold-section h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+
+        .bold-about {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .bold-about .profile-photo {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+            border-radius: 0;
+            border: none;
+            filter: grayscale(20%);
+        }
+
+        .bold-about p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .bold-skills .skills-list {
+            gap: 1rem;
+        }
+
+        .bold-skills .skills-list li {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0;
+            font-size: 1rem;
+            font-weight: 400;
+            transition: all 0.2s;
+        }
+
+        .bold-skills .skills-list li:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .bold-projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .bold-project {
+            border-left: 4px solid var(--primary);
+            padding-left: 2rem;
+        }
+
+        .bold-project h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .bold-project p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .bold-project a {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.85rem;
+        }
+
+        .bold-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .bold-contact-item {
+            padding: 2rem;
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .bold-contact-item svg {
+            fill: var(--secondary);
+            margin-bottom: 1rem;
+            width: 24px;
+            height: 24px;
+        }
+
+        .bold-contact-item span, .bold-contact-item a {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--secondary);
+        }
+
+        .bold-social {
+            display: flex;
+            gap: 0;
+        }
+
+        .bold-social a {
+            width: 80px;
+            height: 80px;
+            background: var(--text);
+            color: var(--secondary);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .bold-social a:hover {
+            background: var(--primary);
+            transform: none;
+        }
+
+        .bold-social svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .bold-banner .hero-content { padding: 2rem; }
+            .bold-main { padding: 2rem; }
+            .bold-about { grid-template-columns: 1fr; gap: 2rem; }
+            .bold-about .profile-photo { max-width: 200px; }
+            .bold-about p { font-size: 1.2rem; }
+            .bold-projects { grid-template-columns: 1fr; }
+        }
+        {% endif %}
 
         /* Print styles */
         @media print {
             body {
-                background: white;
-            }
-
-            .social-links a {
-                background: none;
-                border: 1px solid var(--primary);
-                color: var(--primary);
+                background: white !important;
             }
         }
     </style>
 </head>
-<body>
+<body class="layout-{{ data.layout or 'classic' }}">
+
+    {% if data.layout == 'classic' or not data.layout %}
+    <!-- ============ CLASSIC LAYOUT ============ -->
+
+    {% if data.banner and data.banner.url %}
+    <img src="{{ data.banner.url }}" alt="" class="banner-image">
+    {% endif %}
+
     <header>
         <div class="container">
             <h1>{{ data.bio.name }}</h1>
@@ -251,7 +667,7 @@
 
         {% if section == 'photo' and data.photo.url %}
         <section class="section photo-section">
-            <img src="{{ data.photo.url }}" alt="{{ data.bio.name }}">
+            <img src="{{ data.photo.url }}" alt="{{ data.bio.name }}" class="profile-photo">
         </section>
         {% endif %}
 
@@ -343,6 +759,231 @@
 
         {% endfor %}
     </main>
+
+    {% elif data.layout == 'bento' %}
+    <!-- ============ BENTO LAYOUT ============ -->
+
+    {% if data.banner and data.banner.url %}
+    <div class="banner-wrapper">
+        <img src="{{ data.banner.url }}" alt="" class="banner-image">
+    </div>
+    {% endif %}
+
+    <div class="bento-grid">
+        <!-- Hero Card -->
+        <div class="bento-card bento-hero">
+            <h1>{{ data.bio.name }}</h1>
+            <p class="title">{{ data.bio.title }}</p>
+        </div>
+
+        <!-- Photo Card -->
+        {% if data.photo.url %}
+        <div class="bento-card bento-photo secondary">
+            <img src="{{ data.photo.url }}" alt="{{ data.bio.name }}" class="profile-photo">
+        </div>
+        {% endif %}
+
+        <!-- Bio Card -->
+        {% if data.bio.summary %}
+        <div class="bento-card bento-bio outline">
+            <h2>About</h2>
+            <p>{{ data.bio.summary }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Skills Card -->
+        {% if data.skills %}
+        <div class="bento-card bento-skills">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                {% for skill in data.skills %}
+                <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Project Cards -->
+        {% if data.projects %}
+        {% for project in data.projects %}
+        {% if project.title %}
+        <div class="bento-card bento-project {% if loop.index % 3 == 1 %}secondary{% elif loop.index % 3 == 2 %}accent{% endif %}">
+            <h2>Project</h2>
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+            {% if project.link %}
+            <a href="{{ project.link }}" target="_blank" rel="noopener">View &rarr;</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        <!-- Contact Card -->
+        <div class="bento-card bento-contact outline">
+            <h2>Contact</h2>
+            {% if data.contact.email %}
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <a href="mailto:{{ data.contact.email }}">{{ data.contact.email }}</a>
+            </div>
+            {% endif %}
+            {% if data.contact.phone %}
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <span>{{ data.contact.phone }}</span>
+            </div>
+            {% endif %}
+            {% if data.contact.location %}
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>{{ data.contact.location }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Social Card -->
+        {% if data.social.linkedin or data.social.github or data.social.instagram %}
+        <div class="bento-card bento-social">
+            <h2>Connect</h2>
+            <div class="social-links">
+                {% if data.social.linkedin %}
+                <a href="{{ data.social.linkedin }}" target="_blank" rel="noopener" title="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                </a>
+                {% endif %}
+                {% if data.social.github %}
+                <a href="{{ data.social.github }}" target="_blank" rel="noopener" title="GitHub">
+                    <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                </a>
+                {% endif %}
+                {% if data.social.instagram %}
+                <a href="{{ data.social.instagram }}" target="_blank" rel="noopener" title="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    {% elif data.layout == 'bold' %}
+    <!-- ============ BOLD LAYOUT ============ -->
+
+    {% if data.banner and data.banner.url %}
+    <div class="bold-banner">
+        <img src="{{ data.banner.url }}" alt="" class="banner-image">
+        <div class="hero-content">
+            <h1>{{ data.bio.name }}</h1>
+            <p class="title">{{ data.bio.title }}</p>
+        </div>
+    </div>
+    {% else %}
+    <header class="bold-header-no-banner">
+        <h1>{{ data.bio.name }}</h1>
+        <p class="title">{{ data.bio.title }}</p>
+    </header>
+    {% endif %}
+
+    <main class="bold-main">
+        <!-- About Section -->
+        {% if data.bio.summary or data.photo.url %}
+        <section class="bold-section">
+            <h2>About</h2>
+            <div class="bold-about">
+                {% if data.photo.url %}
+                <img src="{{ data.photo.url }}" alt="{{ data.bio.name }}" class="profile-photo">
+                {% endif %}
+                {% if data.bio.summary %}
+                <p>{{ data.bio.summary }}</p>
+                {% endif %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Skills Section -->
+        {% if data.skills %}
+        <section class="bold-section bold-skills">
+            <h2>Expertise</h2>
+            <ul class="skills-list">
+                {% for skill in data.skills %}
+                <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        <!-- Projects Section -->
+        {% if data.projects %}
+        <section class="bold-section">
+            <h2>Selected Work</h2>
+            <div class="bold-projects">
+                {% for project in data.projects %}
+                {% if project.title %}
+                <div class="bold-project">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    {% if project.link %}
+                    <a href="{{ project.link }}" target="_blank" rel="noopener">View Project &rarr;</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Contact Section -->
+        <section class="bold-section">
+            <h2>Get in Touch</h2>
+            <div class="bold-contact-grid">
+                {% if data.contact.email %}
+                <div class="bold-contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <a href="mailto:{{ data.contact.email }}">{{ data.contact.email }}</a>
+                </div>
+                {% endif %}
+                {% if data.contact.phone %}
+                <div class="bold-contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <span>{{ data.contact.phone }}</span>
+                </div>
+                {% endif %}
+                {% if data.contact.location %}
+                <div class="bold-contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <span>{{ data.contact.location }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Social Section -->
+        {% if data.social.linkedin or data.social.github or data.social.instagram %}
+        <section class="bold-section">
+            <h2>Connect</h2>
+            <div class="social-links bold-social">
+                {% if data.social.linkedin %}
+                <a href="{{ data.social.linkedin }}" target="_blank" rel="noopener" title="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                </a>
+                {% endif %}
+                {% if data.social.github %}
+                <a href="{{ data.social.github }}" target="_blank" rel="noopener" title="GitHub">
+                    <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                </a>
+                {% endif %}
+                {% if data.social.instagram %}
+                <a href="{{ data.social.instagram }}" target="_blank" rel="noopener" title="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                </a>
+                {% endif %}
+            </div>
+        </section>
+        {% endif %}
+    </main>
+
+    {% endif %}
 
     <footer>
         <p>Built with Solarpunk Portfolio</p>

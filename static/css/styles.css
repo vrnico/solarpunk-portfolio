@@ -174,6 +174,44 @@ body {
     margin-bottom: 0.75rem;
 }
 
+/* Layout Options */
+.layout-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.layout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--secondary);
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.layout-btn svg {
+    flex-shrink: 0;
+    color: var(--primary);
+}
+
+.layout-btn:hover {
+    background: var(--white);
+    border-color: var(--accent);
+}
+
+.layout-btn.active {
+    background: var(--white);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--accent);
+}
+
 /* Color Schemes */
 .color-schemes {
     display: grid;
@@ -323,6 +361,31 @@ body {
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid var(--border);
+}
+
+/* Banner Preview */
+.banner-preview {
+    margin-top: 1rem;
+}
+
+.banner-preview img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+}
+
+/* Optional Tag */
+.optional-tag {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-light);
+    background: var(--secondary);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
 }
 
 /* Skills Tags */
@@ -603,6 +666,71 @@ body {
 .step-content p {
     font-size: 0.9rem;
     color: var(--text-light);
+}
+
+/* Setup Steps (First-Time Guide) */
+.highlight-section {
+    background: var(--white);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 2rem !important;
+    margin-top: 2rem;
+}
+
+.setup-steps {
+    margin-top: 1.5rem;
+}
+
+.setup-step {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+}
+
+.setup-step .step-number {
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    font-size: 1rem;
+}
+
+.setup-step .step-content {
+    flex: 1;
+}
+
+.setup-step .step-content h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.setup-step .step-content p {
+    margin: 0 0 0.5rem 0;
+    color: var(--text);
+}
+
+.setup-step .step-content ul,
+.setup-step .step-content ol {
+    margin: 0.5rem 0;
+    padding-left: 1.25rem;
+}
+
+.setup-step .step-content li {
+    margin-bottom: 0.25rem;
+}
+
+.setup-step .help-text {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
 }
 
 .note {

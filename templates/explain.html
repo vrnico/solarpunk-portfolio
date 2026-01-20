@@ -101,7 +101,85 @@
             <li>Project documentation</li>
             <li>Simple static websites</li>
         </ul>
-        <p>Your portfolio will be live at: <code>https://YOUR-USERNAME.github.io/solarpunk-portfolio/</code></p>
+        <p>Your portfolio will be live at: <code>https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/</code></p>
+    </section>
+
+    <section class="explain-section highlight-section">
+        <h2>First-Time Setup Guide</h2>
+        <p>If you're deploying your own portfolio for the first time, follow these steps:</p>
+
+        <div class="setup-steps">
+            <div class="setup-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Create a GitHub Account</h4>
+                    <p>If you don't have one, sign up at <a href="https://github.com" target="_blank">github.com</a>. It's free!</p>
+                </div>
+            </div>
+
+            <div class="setup-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Create a New Repository</h4>
+                    <p>On GitHub, click the <strong>+</strong> button in the top right and select "New repository".</p>
+                    <ul>
+                        <li>Name it something like <code>my-portfolio</code> or <code>portfolio</code></li>
+                        <li>Make it <strong>Public</strong> (required for free GitHub Pages)</li>
+                        <li>Don't initialize with README (we'll push our own code)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="setup-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Connect Your Local Project</h4>
+                    <p>In your terminal, navigate to this project folder and run:</p>
+                    <div class="code-example">
+                        <code>git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git</code>
+                    </div>
+                    <p class="help-text">Replace YOUR-USERNAME and YOUR-REPO-NAME with your actual GitHub username and repository name.</p>
+                </div>
+            </div>
+
+            <div class="setup-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Push Your Code</h4>
+                    <p>Push your main branch to GitHub:</p>
+                    <div class="code-example">
+                        <code>git push -u origin main</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setup-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h4>Enable GitHub Pages</h4>
+                    <p>On your GitHub repository page:</p>
+                    <ol>
+                        <li>Go to <strong>Settings</strong> (tab at the top)</li>
+                        <li>Click <strong>Pages</strong> in the left sidebar</li>
+                        <li>Under "Source", select <strong>Deploy from a branch</strong></li>
+                        <li>Select the <strong>gh-pages</strong> branch and <strong>/ (root)</strong> folder</li>
+                        <li>Click <strong>Save</strong></li>
+                    </ol>
+                    <p class="help-text">The gh-pages branch will be created automatically when you click "Deploy" in the portfolio builder.</p>
+                </div>
+            </div>
+
+            <div class="setup-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h4>Deploy Your Portfolio!</h4>
+                    <p>Go back to the <a href="{{ url_for('admin') }}">Portfolio Builder</a> and click <strong>"Deploy to GitHub Pages"</strong>. Your site will be live at:</p>
+                    <div class="code-example">
+                        <code>https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/</code>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="explain-section">

@@ -1,15 +1,45 @@
 // Solarpunk Portfolio Builder - JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    initLayoutSelector();
     initColorSchemes();
     initSortable();
     initSkillsInput();
     initProjects();
     initPhotoPreview();
+    initBannerPreview();
     initSaveButton();
     initDeployButton();
     initPreviewButton();
 });
+
+// Layout Selection
+function initLayoutSelector() {
+    const layoutButtons = document.querySelectorAll('.layout-btn');
+
+    layoutButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            layoutButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            savePortfolio();
+        });
+    });
+}
+
+// Banner Preview
+function initBannerPreview() {
+    const input = document.getElementById('bannerUrl');
+    const preview = document.getElementById('bannerPreview');
+    if (!input || !preview) return;
+
+    input.addEventListener('input', function() {
+        preview.src = this.value || 'https://via.placeholder.com/600x200?text=No+Banner';
+    });
+
+    preview.addEventListener('error', function() {
+        this.src = 'https://via.placeholder.com/600x200?text=Invalid+URL';
+    });
+}
 
 // Color Scheme Selection
 function initColorSchemes() {
@@ -203,6 +233,10 @@ function collectFormData() {
     const orderItems = document.querySelectorAll('#sectionOrder li');
     const sectionOrder = Array.from(orderItems).map(item => item.dataset.section);
 
+    // Get layout
+    const activeLayout = document.querySelector('.layout-btn.active');
+    const layout = activeLayout ? activeLayout.dataset.layout : 'classic';
+
     // Get color scheme
     const activeScheme = document.querySelector('.scheme-btn.active');
     const colorScheme = activeScheme ? activeScheme.dataset.scheme : 'forest_dawn';
@@ -217,6 +251,11 @@ function collectFormData() {
     // Get photo
     const photo = {
         url: document.getElementById('photoUrl')?.value || ''
+    };
+
+    // Get banner
+    const banner = {
+        url: document.getElementById('bannerUrl')?.value || ''
     };
 
     // Get skills
@@ -247,9 +286,11 @@ function collectFormData() {
 
     return {
         section_order: sectionOrder,
+        layout: layout,
         color_scheme: colorScheme,
         bio: bio,
         photo: photo,
+        banner: banner,
         skills: skills,
         projects: projects,
         contact: contact,

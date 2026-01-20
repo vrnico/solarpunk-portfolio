@@ -33,6 +33,7 @@ COLOR_SCHEMES = {
 DEFAULT_DATA = {
     "github_username": "",
     "color_scheme": "forest_dawn",
+    "layout": "classic",
     "section_order": ["bio", "photo", "skills", "projects", "contact", "social"],
     "bio": {
         "name": "Your Name",
@@ -41,6 +42,9 @@ DEFAULT_DATA = {
     },
     "photo": {
         "url": "https://via.placeholder.com/200x200?text=Your+Photo"
+    },
+    "banner": {
+        "url": ""
     },
     "projects": [
         {"title": "Project One", "description": "Describe your project here.", "link": ""},
@@ -61,11 +65,15 @@ DEFAULT_DATA = {
 
 
 def load_data():
-    """Load portfolio data from JSON file."""
+    """Load portfolio data from JSON file, merging with defaults for any missing fields."""
+    data = DEFAULT_DATA.copy()
     if DATA_FILE.exists():
         with open(DATA_FILE, "r") as f:
-            return json.load(f)
-    return DEFAULT_DATA.copy()
+            saved_data = json.load(f)
+            # Merge saved data with defaults (saved data takes precedence)
+            for key, value in saved_data.items():
+                data[key] = value
+    return data
 
 
 def save_data(data):
