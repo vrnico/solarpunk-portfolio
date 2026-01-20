@@ -1,0 +1,29 @@
+# Instructor materials (not for students)
+LESSON_PLAN.md
+spec/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output is tracked (for gh-pages deployment)
+# but keep empty initially
+output/*.html
+!output/.gitkeep

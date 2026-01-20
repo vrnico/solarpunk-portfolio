@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}Learn Git & GitHub - Solarpunk Portfolio{% endblock %}
+
+{% block content %}
+<div class="explain-page">
+    <h1>Understanding Git & GitHub Pages</h1>
+    <p class="intro">Before you deploy your portfolio, let's understand what's happening under the hood.</p>
+
+    <section class="explain-section">
+        <h2>What is Git?</h2>
+        <p>Git is a <strong>version control system</strong> - think of it like "Track Changes" in Word, but for code. It lets you:</p>
+        <ul>
+            <li>Save snapshots of your project at any point (called <strong>commits</strong>)</li>
+            <li>Go back to previous versions if something breaks</li>
+            <li>Work on different features simultaneously (using <strong>branches</strong>)</li>
+            <li>Collaborate with others without overwriting each other's work</li>
+        </ul>
+    </section>
+
+    <section class="explain-section">
+        <h2>What is GitHub?</h2>
+        <p>GitHub is a website that hosts Git repositories online. It's like Google Drive for code, but with superpowers:</p>
+        <ul>
+            <li>Your code is backed up in the cloud</li>
+            <li>Others can view, download, or contribute to your projects</li>
+            <li>It provides tools for code review, issue tracking, and project management</li>
+            <li>It can host static websites for free with <strong>GitHub Pages</strong></li>
+        </ul>
+    </section>
+
+    <section class="explain-section">
+        <h2>Key Git Concepts</h2>
+
+        <div class="concept">
+            <h3>Repository (Repo)</h3>
+            <p>A folder that Git is tracking. Contains your project files plus a hidden <code>.git</code> folder with all the version history.</p>
+        </div>
+
+        <div class="concept">
+            <h3>Commit</h3>
+            <p>A snapshot of your project at a specific moment. Each commit has a unique ID and a message describing what changed.</p>
+            <div class="code-example">
+                <code>git commit -m "Add contact section to portfolio"</code>
+            </div>
+        </div>
+
+        <div class="concept">
+            <h3>Branch</h3>
+            <p>A parallel version of your project. The default branch is usually called <code>main</code>. For GitHub Pages, we use a special branch called <code>gh-pages</code>.</p>
+        </div>
+
+        <div class="concept">
+            <h3>Push</h3>
+            <p>Upload your commits to GitHub (the remote server).</p>
+            <div class="code-example">
+                <code>git push origin main</code>
+            </div>
+        </div>
+
+        <div class="concept">
+            <h3>Pull</h3>
+            <p>Download changes from GitHub to your local computer.</p>
+            <div class="code-example">
+                <code>git pull origin main</code>
+            </div>
+        </div>
+    </section>
+
+    <section class="explain-section">
+        <h2>Commit Message Etiquette</h2>
+        <p>Good commit messages help you (and others) understand the project history. Follow these rules:</p>
+
+        <div class="do-dont">
+            <div class="do">
+                <h4>Do</h4>
+                <ul>
+                    <li>Use imperative mood: "Add feature" not "Added feature"</li>
+                    <li>Keep the first line under 50 characters</li>
+                    <li>Be specific: "Fix login button color on mobile"</li>
+                    <li>Reference issue numbers when relevant: "Fix #123"</li>
+                </ul>
+            </div>
+            <div class="dont">
+                <h4>Don't</h4>
+                <ul>
+                    <li>"Fixed stuff"</li>
+                    <li>"WIP"</li>
+                    <li>"asdfasdf"</li>
+                    <li>"Changes"</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="explain-section">
+        <h2>What is GitHub Pages?</h2>
+        <p>GitHub Pages is a free hosting service that turns a Git repository into a live website. Perfect for:</p>
+        <ul>
+            <li>Personal portfolios (like the one you're building!)</li>
+            <li>Project documentation</li>
+            <li>Simple static websites</li>
+        </ul>
+        <p>Your portfolio will be live at: <code>https://YOUR-USERNAME.github.io/solarpunk-portfolio/</code></p>
+    </section>
+
+    <section class="explain-section">
+        <h2>What This Tool Automates</h2>
+        <p>When you click "Deploy", the tool runs these Git commands for you:</p>
+
+        <div class="command-flow">
+            <div class="command-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <code>git add output/index.html portfolio_data.json</code>
+                    <p>Stage the generated files for commit</p>
+                </div>
+            </div>
+
+            <div class="command-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <code>git commit -m "Deploy portfolio - [timestamp]"</code>
+                    <p>Create a commit with your changes</p>
+                </div>
+            </div>
+
+            <div class="command-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <code>git subtree push --prefix output origin gh-pages</code>
+                    <p>Push just the output folder to the gh-pages branch</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="note">The <code>gh-pages</code> branch is special - GitHub automatically serves its contents as a website!</p>
+    </section>
+
+    <section class="explain-section">
+        <h2>Common Git Commands Reference</h2>
+        <table class="git-commands">
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>What it does</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>git status</code></td>
+                    <td>See what files have changed</td>
+                </tr>
+                <tr>
+                    <td><code>git add .</code></td>
+                    <td>Stage all changed files</td>
+                </tr>
+                <tr>
+                    <td><code>git commit -m "msg"</code></td>
+                    <td>Save a snapshot with a message</td>
+                </tr>
+                <tr>
+                    <td><code>git push</code></td>
+                    <td>Upload commits to GitHub</td>
+                </tr>
+                <tr>
+                    <td><code>git pull</code></td>
+                    <td>Download changes from GitHub</td>
+                </tr>
+                <tr>
+                    <td><code>git log --oneline</code></td>
+                    <td>See commit history</td>
+                </tr>
+                <tr>
+                    <td><code>git branch</code></td>
+                    <td>List all branches</td>
+                </tr>
+                <tr>
+                    <td><code>git checkout -b name</code></td>
+                    <td>Create and switch to a new branch</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="cta-section">
+        <h2>Ready to Build?</h2>
+        <p>Now that you understand the basics, let's create your portfolio!</p>
+        <a href="{{ url_for('admin') }}" class="btn btn-primary">Go to Portfolio Builder</a>
+    </div>
+</div>
+{% endblock %}

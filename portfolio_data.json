@@ -1,0 +1,51 @@
+{
+  "section_order": [
+    "photo",
+    "bio",
+    "skills",
+    "projects",
+    "contact",
+    "social"
+  ],
+  "color_scheme": "forest_dawn",
+  "bio": {
+    "name": "Alex Rivera",
+    "title": "Full-Stack Developer",
+    "summary": "Passionate developer with 3 years of experience building web applications. I love creating tools that make people's lives easier and learning new technologies along the way."
+  },
+  "photo": {
+    "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face"
+  },
+  "skills": [
+    "JavaScript",
+    "Python",
+    "React",
+    "Node.js",
+    "SQL",
+    "Git",
+    "REST APIs",
+    "CSS/Sass"
+  ],
+  "projects": [
+    {
+      "title": "Task Manager App",
+      "description": "A full-stack task management application built with React and Node.js. Features include drag-and-drop organization, team collaboration, and deadline reminders.",
+      "link": "https://github.com"
+    },
+    {
+      "title": "Weather Dashboard",
+      "description": "A responsive weather application that displays current conditions and 5-day forecasts using the OpenWeather API.",
+      "link": "https://github.com"
+    }
+  ],
+  "contact": {
+    "email": "alex.rivera@example.com",
+    "phone": "",
+    "location": "San Francisco, CA"
+  },
+  "social": {
+    "linkedin": "https://linkedin.com/in/example",
+    "github": "https://github.com/example",
+    "instagram": ""
+  }
+}

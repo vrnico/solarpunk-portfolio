@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.bio.name }} - Portfolio</title>
+    <style>
+        :root {
+            --primary: {{ scheme.primary }};
+            --secondary: {{ scheme.secondary }};
+            --accent: {{ scheme.accent }};
+            --text: {{ scheme.text }};
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--secondary);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        header .title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: var(--secondary);
+        }
+
+        .section {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--accent);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 1.2em;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Photo Section */
+        .photo-section {
+            text-align: center;
+        }
+
+        .photo-section img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Bio Section */
+        .bio-section p {
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        /* Skills Section */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            list-style: none;
+        }
+
+        .skills-list li {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .project {
+            background: rgba(0,0,0,0.03);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .project h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project p {
+            margin-bottom: 0.75rem;
+        }
+
+        .project a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .project a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary);
+        }
+
+        .contact-item a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        /* Social Section */
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--secondary);
+            border-radius: 50%;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        .social-links svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem 0;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .social-links a {
+                background: none;
+                border: 1px solid var(--primary);
+                color: var(--primary);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>{{ data.bio.name }}</h1>
+            <p class="title">{{ data.bio.title }}</p>
+        </div>
+    </header>
+
+    <main class="container">
+        {% for section in data.section_order %}
+
+        {% if section == 'photo' and data.photo.url %}
+        <section class="section photo-section">
+            <img src="{{ data.photo.url }}" alt="{{ data.bio.name }}">
+        </section>
+        {% endif %}
+
+        {% if section == 'bio' and data.bio.summary %}
+        <section class="section bio-section">
+            <h2>About Me</h2>
+            <p>{{ data.bio.summary }}</p>
+        </section>
+        {% endif %}
+
+        {% if section == 'skills' and data.skills %}
+        <section class="section skills-section">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                {% for skill in data.skills %}
+                <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if section == 'projects' and data.projects %}
+        <section class="section projects-section">
+            <h2>Projects</h2>
+            {% for project in data.projects %}
+            {% if project.title %}
+            <div class="project">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+                {% if project.link %}
+                <a href="{{ project.link }}" target="_blank" rel="noopener">View Project &rarr;</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if section == 'contact' %}
+        <section class="section contact-section">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                {% if data.contact.email %}
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <a href="mailto:{{ data.contact.email }}">{{ data.contact.email }}</a>
+                </div>
+                {% endif %}
+                {% if data.contact.phone %}
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <span>{{ data.contact.phone }}</span>
+                </div>
+                {% endif %}
+                {% if data.contact.location %}
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <span>{{ data.contact.location }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if section == 'social' %}
+        {% if data.social.linkedin or data.social.github or data.social.instagram %}
+        <section class="section social-section">
+            <h2>Connect</h2>
+            <div class="social-links">
+                {% if data.social.linkedin %}
+                <a href="{{ data.social.linkedin }}" target="_blank" rel="noopener" title="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                </a>
+                {% endif %}
+                {% if data.social.github %}
+                <a href="{{ data.social.github }}" target="_blank" rel="noopener" title="GitHub">
+                    <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                </a>
+                {% endif %}
+                {% if data.social.instagram %}
+                <a href="{{ data.social.instagram }}" target="_blank" rel="noopener" title="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                </a>
+                {% endif %}
+            </div>
+        </section>
+        {% endif %}
+        {% endif %}
+
+        {% endfor %}
+    </main>
+
+    <footer>
+        <p>Built with Solarpunk Portfolio</p>
+    </footer>
+</body>
+</html>

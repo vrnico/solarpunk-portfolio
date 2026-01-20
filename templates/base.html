@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Solarpunk Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-brand">Solarpunk Portfolio</div>
+        <div class="nav-links">
+            <a href="{{ url_for('admin') }}" class="{% if request.endpoint == 'admin' %}active{% endif %}">Builder</a>
+            <a href="{{ url_for('explain') }}" class="{% if request.endpoint == 'explain' %}active{% endif %}">Learn Git</a>
+            <a href="{{ url_for('preview') }}" target="_blank">Preview</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
