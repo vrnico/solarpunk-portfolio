@@ -261,6 +261,96 @@
         </table>
     </section>
 
+    <section class="explain-section troubleshooting-section">
+        <h2>Troubleshooting Common Issues</h2>
+        <p>Running into problems? Here are the most common issues and how to fix them:</p>
+
+        <div class="issue">
+            <h4>🔴 "Failed to stage files" or "Not a git repository"</h4>
+            <p><strong>Cause:</strong> Git isn't initialized or configured properly.</p>
+            <p><strong>Fix:</strong></p>
+            <div class="code-example">
+                <code>git init</code>
+                <code>git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git</code>
+            </div>
+        </div>
+
+        <div class="issue">
+            <h4>🔴 "fatal: 'origin' does not appear to be a git repository"</h4>
+            <p><strong>Cause:</strong> No remote repository is connected.</p>
+            <p><strong>Fix:</strong> Create a repo on GitHub first, then connect it:</p>
+            <div class="code-example">
+                <code>git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git</code>
+            </div>
+        </div>
+
+        <div class="issue">
+            <h4>🔴 "Authentication failed" or "Permission denied"</h4>
+            <p><strong>Cause:</strong> Git doesn't have permission to push to your GitHub account.</p>
+            <p><strong>Fix:</strong> You need to authenticate with GitHub. Options:</p>
+            <ul>
+                <li><strong>GitHub CLI:</strong> Run <code>gh auth login</code> and follow prompts</li>
+                <li><strong>Personal Access Token:</strong> Create one at GitHub → Settings → Developer settings → Personal access tokens</li>
+                <li><strong>SSH Keys:</strong> <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" target="_blank">Set up SSH keys</a></li>
+            </ul>
+        </div>
+
+        <div class="issue">
+            <h4>🔴 404 Error when visiting your GitHub Pages URL</h4>
+            <p><strong>Cause:</strong> GitHub Pages isn't enabled, or the gh-pages branch doesn't exist yet.</p>
+            <p><strong>Fix:</strong></p>
+            <ol>
+                <li>Make sure you've clicked "Deploy" at least once (this creates the gh-pages branch)</li>
+                <li>Go to your repo → Settings → Pages</li>
+                <li>Set Source to "Deploy from a branch"</li>
+                <li>Select <strong>gh-pages</strong> branch and <strong>/ (root)</strong></li>
+                <li>Wait 1-2 minutes for GitHub to build your site</li>
+            </ol>
+        </div>
+
+        <div class="issue">
+            <h4>🔴 "Repository must be public" or Pages not available</h4>
+            <p><strong>Cause:</strong> GitHub Pages requires a public repository (on free accounts).</p>
+            <p><strong>Fix:</strong> Go to your repo → Settings → scroll to "Danger Zone" → Change visibility to Public</p>
+        </div>
+
+        <div class="issue">
+            <h4>🟡 Changes not appearing on live site</h4>
+            <p><strong>Cause:</strong> GitHub Pages can take 1-2 minutes to update after a deploy.</p>
+            <p><strong>Fix:</strong></p>
+            <ul>
+                <li>Wait a minute or two</li>
+                <li>Hard refresh your browser: <code>Ctrl+Shift+R</code> (Windows) or <code>Cmd+Shift+R</code> (Mac)</li>
+                <li>Check the "Actions" tab on GitHub to see if the build is still running</li>
+            </ul>
+        </div>
+
+        <div class="issue">
+            <h4>🟡 Images not loading on live site</h4>
+            <p><strong>Cause:</strong> Mixed content (using http:// instead of https://) or broken URLs.</p>
+            <p><strong>Fix:</strong></p>
+            <ul>
+                <li>Make sure all image URLs start with <code>https://</code></li>
+                <li>Test image URLs directly in your browser to verify they work</li>
+                <li>Use reliable image hosts (LinkedIn, Gravatar, Imgur, GitHub itself)</li>
+            </ul>
+        </div>
+
+        <div class="issue">
+            <h4>🟡 "subtree push" errors</h4>
+            <p><strong>Cause:</strong> Git subtree can be finicky with history.</p>
+            <p><strong>Fix:</strong> Try a force push to gh-pages (this is safe since gh-pages only contains generated files):</p>
+            <div class="code-example">
+                <code>git push origin `git subtree split --prefix output main`:gh-pages --force</code>
+            </div>
+        </div>
+
+        <div class="help-box">
+            <h4>Still stuck?</h4>
+            <p>Ask your instructor for help, or check the error messages carefully - they usually tell you exactly what's wrong!</p>
+        </div>
+    </section>
+
     <div class="cta-section">
         <h2>Ready to Build?</h2>
         <p>Now that you understand the basics, let's create your portfolio!</p>

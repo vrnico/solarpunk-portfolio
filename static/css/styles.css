@@ -733,6 +733,81 @@ body {
     font-style: italic;
 }
 
+/* Troubleshooting Section */
+.troubleshooting-section {
+    background: #fefefe;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem !important;
+}
+
+.issue {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.issue h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.issue p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.issue ul, .issue ol {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.issue li {
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.issue code {
+    background: #f1f1f1;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+}
+
+.issue .code-example {
+    margin: 0.75rem 0;
+}
+
+.issue .code-example code {
+    display: block;
+    background: #1a1a1a;
+    color: #0f0;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 0.25rem;
+}
+
+.help-box {
+    background: #e8f5e9;
+    border: 1px solid #4CAF50;
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.help-box h4 {
+    margin: 0 0 0.5rem 0;
+    color: #2e7d32;
+}
+
+.help-box p {
+    margin: 0;
+    color: var(--text);
+}
+
 .note {
     background: #fff3cd;
     border-left: 4px solid #ffc107;
